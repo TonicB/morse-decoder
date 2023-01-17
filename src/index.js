@@ -34,12 +34,28 @@ const MORSE_TABLE = {
     '--...':  '7',
     '---..':  '8',
     '----.':  '9',
-    '-----':  '0',
+    '-----': '0',
+    '     ': ' ',
 };
 
 function decode(expr) {
-    // write your solution here
+    return expr.match(/.{10}/g).map((x) => x.replace(/.{2}/g, callback = (match) => {
+        switch (match) {
+            case '00':
+                return ''
+            case '10':
+                return '.'
+            case '11':
+                return '-'
+            case '**':
+                return ' '
+        }
+        
+    })).map(x => MORSE_TABLE[x]).join('')
+
 }
+
+// console.log(decode("00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010"))
 
 module.exports = {
     decode
